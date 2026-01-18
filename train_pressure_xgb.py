@@ -64,7 +64,7 @@ xgb = XGBRegressor(objective='reg:squarederror')
 # 简单的网格搜索
 param_grid = {
     'n_estimators': [50, 100],     # 树的数量
-    'learning_rate': [0.05, 0.1],  # 学习率
+    'learning_rate': [0.05, 0.2],  # 学习率
     'max_depth': [3, 5]            # 树的深度
 }
 
