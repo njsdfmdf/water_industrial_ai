@@ -14,15 +14,15 @@ sql = "SELECT * FROM water_pressure"
 
 try:
     print("📥 正在从数据库提取数据...")
-    
+
     # 3. 核心代码：一行搞定读取！
     # Pandas 会自动执行 SQL，把结果转换成 DataFrame
     df_result = pd.read_sql(sql, engine)
-    
+
     print("✅ 提取成功！来看看前 5 行：")
     print(df_result.head())
-    
+
     print(f"\n📊 数据统计：共提取了 {len(df_result)} 条数据")
-    
+
 except Exception as e:
     print(f"❌ 提取失败: {e}")

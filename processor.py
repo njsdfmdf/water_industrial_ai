@@ -1,10 +1,12 @@
 import pandas as pd
 import numpy as np
 
+
 class WaterDataProcessor:
     """
     水务数据处理类：封装了读取、清洗、特征转换的方法
     """
+
     def __init__(self, file_path):
         self.file_path = file_path
         self.data = None
@@ -24,9 +26,9 @@ class WaterDataProcessor:
         """清洗数据：填充缺失值"""
         if self.data is not None:
             # 假设 'ph' 列有缺失，用均值填充
-            if 'ph' in self.data.columns:
-                mean_ph = self.data['ph'].mean()
-                self.data['ph'] = self.data['ph'].fillna(mean_ph)
+            if "ph" in self.data.columns:
+                mean_ph = self.data["ph"].mean()
+                self.data["ph"] = self.data["ph"].fillna(mean_ph)
                 print(f"缺失值填充完毕，pH均值: {mean_ph:.2f}")
             else:
                 print("警告：未找到 'ph' 列")
@@ -37,6 +39,7 @@ class WaterDataProcessor:
         if self.data is not None:
             return self.data.describe()
         return "无数据"
+
 
 # --- 测试代码 (main block) ---
 if __name__ == "__main__":

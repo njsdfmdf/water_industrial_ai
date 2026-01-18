@@ -1,5 +1,6 @@
 import time
 
+
 class AIModelWrapper:
     # 1. __init__: 初始化状态
     def __init__(self, model_name, version="v1.0"):
@@ -27,20 +28,21 @@ class AIModelWrapper:
         """
         if not self.is_loaded:
             raise RuntimeError("❌ 错误: 模型尚未加载，请先调用 load_weights()")
-        
+
         print(f"🚀 [推理] 正在处理输入数据: {input_data}")
         # 模拟预测逻辑
-        result = [x * 2 for x in input_data] 
+        result = [x * 2 for x in input_data]
         return result
+
 
 # --- 练习区 ---
 # 1. 实例化 (触发 __init__)
 my_model = AIModelWrapper("WaterQualityPredictor")
 
 # 2. 调用方法
-#my_model.load_weights()
+# my_model.load_weights()
 
 # 3. 像函数一样调用对象 (触发 __call__)
 # 这比写 my_model.predict([1, 2, 3]) 要优雅，且符合 AI 框架标准
-prediction = my_model([1, 2, 3]) 
+prediction = my_model([1, 2, 3])
 print(f"预测结果: {prediction}")

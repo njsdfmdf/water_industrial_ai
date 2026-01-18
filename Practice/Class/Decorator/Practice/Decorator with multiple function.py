@@ -13,6 +13,7 @@ def complex_decorator(func):
 
     return wrapper
 
+
 @complex_decorator
 def myPlace():
     print("杭州")
