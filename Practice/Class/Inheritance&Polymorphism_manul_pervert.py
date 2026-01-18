@@ -32,6 +32,7 @@ class PervertFunction(BaseFunction):
 
         self.quality = quality
 
+
     
     def __call__(self, numFuck) -> Any:
         
@@ -42,8 +43,7 @@ class PervertFunction(BaseFunction):
     
     def Quality(self, quality):
         print(f"{self.name} 是个 {quality} 的人")
-    
-    
+
 def run_pipeline(transformers, data):
     for tf in transformers:
         result = tf(data)
