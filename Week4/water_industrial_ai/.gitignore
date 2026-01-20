@@ -1,0 +1,17 @@
+# 1. 必须忽略：Python 编译缓存（对应你截图中的 __pycache__）
+__pycache__/
+*.pyc
+
+# 2. 忽略 VS Code 的项目配置文件（个人设置不需要同步）
+.vscode/
+
+# 3. 忽略系统生成的文件
+.DS_Store
+Thumbs.db
+
+# 4. (可选) 忽略生成的数据结果或大文件
+# 如果 weekly_report.png 是每次运行都会变的结果图，建议忽略
+reports/*.png
+
+# 如果 pressure_xgb.pkl 模型文件非常大(超过100M)，建议忽略；如果是练习用的小模型，可以保留
+# models/*.pkl
