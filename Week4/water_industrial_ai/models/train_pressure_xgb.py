@@ -7,34 +7,28 @@ from xgboost import XGBRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.model_selection import train_test_split, GridSearchCV
 
+# --- 关键修改：导入我们刚才写的 db_loader ---
+# 注意：由于最终是在 main.py 运行，sys.path 包含了根目录
+# 所以我们可以直接从 data 包导入
+from data.db_loader import load_pressure_training_data
 
 def run():
     """模型训练入口函数"""
     try:
-        print("   [Model] 正在连接数据库...")
-        engine = create_engine("mysql+pymysql://root:123456@localhost:3306/water_db")
-        sql = "SELECT record_time, pressure FROM water_pressure WHERE area='A区' ORDER BY record_time"
+        
+        df = load_pressure_training_data()
 
-        with engine.connect() as conn:
-            df = pd.read_sql(text(sql), conn)
-
-        if df.empty:
-            print("   [Model] ⚠️ 数据库为空，无法训练！")
-            return
-
-        # --- 特征工程 ---
-        print("   [Model] 构造特征(Lag Features)...")
-        df["hour"] = df["record_time"].dt.hour
-        df["dayofweek"] = df["record_time"].dt.dayofweek
-        df["pressure_lag_1"] = df["pressure"].shift(1)
-        df["pressure_lag_2"] = df["pressure"].shift(2)
-        df.dropna(inplace=True)
+        if df is None or df.empty:
+            print("   [Model] ❌ 无法获取训练数据，终止训练")
+            return False
 
         # --- 划分 ---
         features = ["hour", "dayofweek", "pressure_lag_1", "pressure_lag_2"]
         target = "pressure"
+
         X = df[features]
         y = df[target]
+        
         X_train, X_test, y_train, y_test = train_test_split(
             X, y, test_size=0.2, shuffle=False
         )
