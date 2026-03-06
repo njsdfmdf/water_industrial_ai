@@ -77,7 +77,7 @@ def run():
 
     # --- 1. 加载和处理数据 (和你 LSTM 的逻辑一模一样) ---
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    csv_path = os.path.join(base_dir, '..', 'data', 'water_pressure_1month.csv') # 假设你的数据在上级目录的 data 下
+    csv_path = os.path.join(base_dir,'water_pressure_1month.csv') # 假设你的数据在上级目录的 data 下
     
     if not os.path.exists(csv_path):
         print(f"❌ 找不到数据文件：{csv_path}。请确认 Day 1 的数据生成脚本已运行。")
