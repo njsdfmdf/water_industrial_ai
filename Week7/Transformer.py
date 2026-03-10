@@ -35,7 +35,7 @@ class PositionalEncoding(nn.Module):
 # ==========================================
 class TimeSeriesTransformer(nn.Module):
     def __init__(self, input_size=1, d_model=64, nhead=4, num_layers=2, output_size=60, window_size=120):
-        super(TimeSeriesTransformer, self).__init__()
+        super().__init__()
         
         # 1. 扩容：把单纯的1个水压数值，映射成包含64个特征的高维空间 (d_model)
         self.input_linear = nn.Linear(input_size, d_model)
@@ -77,7 +77,7 @@ def run():
 
     # --- 1. 加载和处理数据 (和你 LSTM 的逻辑一模一样) ---
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    csv_path = os.path.join(base_dir,'water_pressure_1month.csv') # 假设你的数据在上级目录的 data 下
+    csv_path = os.path.join(base_dir,'water_pressure_1month.csv') 
     
     if not os.path.exists(csv_path):
         print(f"❌ 找不到数据文件：{csv_path}。请确认 Day 1 的数据生成脚本已运行。")
